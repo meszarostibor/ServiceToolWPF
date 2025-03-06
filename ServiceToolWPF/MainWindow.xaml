@@ -6,11 +6,24 @@
         xmlns:local="clr-namespace:ServiceToolWPF"
         mc:Ignorable="d"
         Title="House of mysteries - Service tool" Width="900" Height="500" WindowStartupLocation="CenterScreen">
-    <Grid >
+    <Grid x:Name="grid" >
         <GroupBox Header="Backend actions" Margin="0,2,162,128"/>
         <TabControl Margin="4,20,166,132">
             <TabItem Header="Registration">
-                <Grid Background="#FFE5E5E5">
+                <Grid>
+                    <TextBox x:Name="txbRegUsernameMask" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Username" VerticalAlignment="Top" Width="120" Foreground="#FF7E7C7C" Focusable="False"/>
+                    <TextBox x:Name="txbRegPass1Mask" HorizontalAlignment="Left" Margin="10,30,0,0" TextWrapping="Wrap" Text="Password" VerticalAlignment="Top" Width="120" Foreground="#FF7E7C7C" Focusable="False"/>
+                    <TextBox x:Name="txbRegPass2Mask" HorizontalAlignment="Left" Margin="10,50,0,0" TextWrapping="Wrap" Text="Retype password" VerticalAlignment="Top" Width="120" Foreground="#FF7E7C7C" Focusable="False"/>
+                    <TextBox x:Name="txbRegNameMask_Copy" HorizontalAlignment="Left" Margin="10,70,0,0" TextWrapping="Wrap" Text="Name" VerticalAlignment="Top" Width="120" Foreground="#FF7E7C7C" Focusable="False"/>
+                    <TextBox x:Name="txbRegEmailMask_Copy1" HorizontalAlignment="Left" Margin="10,90,0,0" TextWrapping="Wrap" Text="Email" VerticalAlignment="Top" Width="120" Foreground="#FF7E7C7C" Focusable="False"/>
+                    <Button x:Name="btnRegistration"  Content="Registration" HorizontalAlignment="Left" Margin="10,110,0,0" VerticalAlignment="Top" Width="120"/>
+                    <TextBox x:Name="txbRegUserName" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" GotFocus="txbRegUserName_GotFocus" TextChanged="txbRegUserName_TextChanged" BorderBrush="#FFABADB3" Background="{Binding ElementName=grid, Mode=OneWay}"/>
+                    <PasswordBox x:Name="txbRegPassword1" HorizontalAlignment="Left" Margin="10,30,0,0" VerticalAlignment="Top" Width="120" GotFocus="txbRegPassword1_GotFocus" PasswordChanged="txbRegPassword1_PasswordChanged" Background="{Binding ElementName=grid, Mode=OneWay}"/>
+                    <PasswordBox x:Name="txbRegPassword2" HorizontalAlignment="Left" Margin="10,50,0,0" VerticalAlignment="Top" Width="120" GotFocus="txbRegPassword2_GotFocus"  PasswordChanged="txbRegPassword2_PasswordChanged" Background="{Binding ElementName=grid, Mode=OneWay}"/>
+                    <TextBox x:Name="txbRegName" HorizontalAlignment="Left" Margin="10,70,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" GotFocus="txbRegName_GotFocus"  TextChanged="txbRegName_TextChanged" Background="{Binding ElementName=grid, Mode=OneWay}"/>
+                    <TextBox x:Name="txbRegEmail" HorizontalAlignment="Left" Margin="10,90,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" GotFocus="txbRegEmail_GotFocus"  TextChanged="txbRegEmail_TextChanged" Background="{Binding ElementName=grid, Mode=OneWay}"/>
+
+
 
                 </Grid>
             </TabItem>
@@ -18,7 +31,6 @@
 
             </TabItem>
         </TabControl>
-        <GroupBox/>
         <GroupBox Header="Login" Width="160" Margin="0,2,2,128" HorizontalAlignment="Right">
             <Grid>
 
@@ -27,9 +39,9 @@
                 <TextBox x:Name="txbUserName" HorizontalAlignment="Center" Margin="0,5,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="146" Height="18" UseLayoutRounding="False" GotFocus="txbUserName_GotFocus" Foreground="#FF5B5CAB" FontWeight="Bold" Background="{Binding ElementName=txbPassword, Mode=OneWay}" TextChanged="txbUserName_TextChanged" KeyDown="txbUserName_KeyDown" />
                 <PasswordBox x:Name="txbPassword" HorizontalAlignment="Center" Margin="0,25,0,0" VerticalAlignment="Top" Width="146" Password="" Grid.Column="1" Height="18" GotFocus="txbPassword_GotFocus" Foreground="#FF5B5CAB" FontWeight="Bold" PasswordChanged="txbPassword_PasswordChanged" Background="{Binding ElementName=txbUserNameBackgrnd, Mode=OneWay}" KeyDown="txbPassword_KeyDown"/>
                 <Button x:Name="btnLogin" Content="Login" HorizontalAlignment="Center" Margin="0,45,0,0" VerticalAlignment="Top" Width="146" Grid.Column="1" Height="20" Click="btnLogin_Click"/>
-              
-                <Button x:Name="btnSaveLog" Content="Save log" HorizontalAlignment="Center" Width="146" Height="20" VerticalAlignment="Bottom" Margin="0,0,0,22"/>
-                <Button x:Name="btnClearLog" Content="Clear log" HorizontalAlignment="Center" Margin="0,111,0,0" VerticalAlignment="Bottom" Width="146" Grid.Column="1" Height="20"/>
+
+                <Button x:Name="btnSaveLog" Content="Save log" HorizontalAlignment="Center" Width="146" Height="20" VerticalAlignment="Bottom" Margin="0,0,0,22" Click="btnSaveLog_Click"/>
+                <Button x:Name="btnClearLog" Content="Clear log" HorizontalAlignment="Center" Margin="0,111,0,0" VerticalAlignment="Bottom" Width="146" Grid.Column="1" Height="20" Click="btnClearLog_Click"/>
             </Grid>
 
         </GroupBox>

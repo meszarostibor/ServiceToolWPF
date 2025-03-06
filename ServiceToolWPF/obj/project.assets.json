@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Suli\\2Ev\\IKTProjektmunka\\ServiceToolWPF\\ServiceToolWPF\\ServiceToolWPF.csproj",
+      "projectUniqueName": "D:\\SULI\\Projektmunka\\RejtelyekHazaServiceTool\\ServiceToolWPF\\ServiceToolWPF\\ServiceToolWPF.csproj",
       "projectName": "ServiceToolWPF",
-      "projectPath": "D:\\Suli\\2Ev\\IKTProjektmunka\\ServiceToolWPF\\ServiceToolWPF\\ServiceToolWPF.csproj",
+      "projectPath": "D:\\SULI\\Projektmunka\\RejtelyekHazaServiceTool\\ServiceToolWPF\\ServiceToolWPF\\ServiceToolWPF.csproj",
       "packagesPath": "C:\\Users\\mesza\\.nuget\\packages\\",
-      "outputPath": "D:\\Suli\\2Ev\\IKTProjektmunka\\ServiceToolWPF\\ServiceToolWPF\\obj\\",
+      "outputPath": "D:\\SULI\\Projektmunka\\RejtelyekHazaServiceTool\\ServiceToolWPF\\ServiceToolWPF\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -75,7 +75,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

@@ -13,6 +13,9 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Security.Cryptography;
 using System.Net.Http;
+using Microsoft.Win32;
+using System.IO;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace ServiceToolWPF
 {
@@ -168,12 +171,140 @@ namespace ServiceToolWPF
             btnLogin.Content = "Login";
         }
         #endregion 
-        #region Log
+        #region LogWindow
         public void WriteLog(string line) 
         { 
             lbxLog.Items.Add($"{DateTime.Now.ToString()}> {line}");        
         }
+        private void btnClearLog_Click(object sender, RoutedEventArgs e)
+        {
+            lbxLog.Items.Clear();
+        }
+        private void btnSaveLog_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+                saveFileDialog1.Filter = "txt | *.txt";
+                saveFileDialog1.Title = "Save log";
+                saveFileDialog1.FileName = "log " + DateTime.Now.ToString();
+                if (saveFileDialog1.ShowDialog() == true)
+                {
+                    StreamWriter sw = new StreamWriter(saveFileDialog1.FileName);
+                    foreach (string line in lbxLog.Items)
+                    {
+                        sw.WriteLine(line);
+                    }
+                    sw.Close();
+                }
+            }
+            catch 
+            {
+                WriteLog("Save log error!");
+            }
+        }
         #endregion
+        #region Registration input mask settings
+        private void txbRegUserName_GotFocus(object sender, RoutedEventArgs e)
+        {
+            RegUsernameTextCheck();
+        }
+        private void txbRegUserName_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            RegUsernameTextCheck();
+        }
+        private void RegUsernameTextCheck() 
+        {
+            if (txbRegUserName.Text == "")
+            {
+                txbRegUserName.Background = null;
+            }
+            else
+            {
+                txbRegUserName.Background = txbUserNameBackgrnd.Background;
+            }
+        }
+        private void txbRegPassword1_GotFocus(object sender, RoutedEventArgs e)
+        {
+            RegPassword1TextCheck();
+        }
+        private void txbRegPassword1_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            RegPassword1TextCheck();
+        }
+        private void RegPassword1TextCheck() 
+        {
+            if (txbRegPassword1.Password == "")
+            {
+                txbRegPassword1.Background = null;
+            }
+            else
+            {
+                txbRegPassword1.Background = txbPasswordBackgrnd.Background;
+            }
+        }
+        private void txbRegPassword2_GotFocus(object sender, RoutedEventArgs e)
+        {
+            RegPassword2TextCheck();
+        }
+        private void txbRegPassword2_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            RegPassword2TextCheck();
+        }
+        private void RegPassword2TextCheck()
+        {
+            if (txbRegPassword2.Password == "")
+            {
+                txbRegPassword2.Background = null;
+            }
+            else
+            {
+                txbRegPassword2.Background = txbUserNameBackgrnd.Background;
+            }
+        }
 
+        private void txbRegName_GotFocus(object sender, RoutedEventArgs e)
+        {
+            RegNameTextCheck();
+        }
+
+        private void txbRegName_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            RegNameTextCheck();
+        }
+        private void RegNameTextCheck()
+        {
+            if (txbRegName.Text == "")
+            {
+                txbRegName.Background = null;
+            }
+            else
+            {
+                txbRegName.Background = txbUserNameBackgrnd.Background;
+            }
+        }
+
+        private void txbRegEmail_GotFocus(object sender, RoutedEventArgs e)
+        {
+            RegEmailTextCheck();
+        }
+
+        private void txbRegEmail_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            RegEmailTextCheck();
+        }
+
+        private void RegEmailTextCheck() 
+        {
+            if (txbRegEmail.Text == "")
+            {
+                txbRegEmail.Background = null;
+            }
+            else
+            {
+                txbRegEmail.Background = txbUserNameBackgrnd.Background;
+            }
+        }
+        #endregion
     }
 }
