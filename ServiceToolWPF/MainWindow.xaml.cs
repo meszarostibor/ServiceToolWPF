@@ -33,14 +33,6 @@ namespace ServiceToolWPF
         public MainWindow()
         {
             InitializeComponent();
-            btnLogOut.IsEnabled = false;
-            lbxLog.Items.Add("1.sor");
-            lbxLog.Items.Add("2.sor");
-            lbxLog.Items.Add("3.sor");
-            lbxLog.Items.Add("4.sor");
-            lbxLog.Items.Add("5.sor");
-            lbxLog.Items.Add("6.sor");
-
         }
         #endregion
         #region Generate Salt/Hash
@@ -70,7 +62,6 @@ namespace ServiceToolWPF
             }
         }
         #endregion
-
         #region UserName/Password textbox mask settings
         private void txbUserName_GotFocus(object sender, RoutedEventArgs e)
         {
@@ -123,13 +114,14 @@ namespace ServiceToolWPF
         }
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
-                        UserLogin();
-        }
-        #endregion
-        #region Logout trigger event
-        private void btnLogOut_Click(object sender, RoutedEventArgs e)
-        {
-
+            if(btnLogin.Content.ToString() =="Login")
+            {
+                UserLogin();
+            }
+            else
+            {
+                UserLogout();
+            }            
         }
         #endregion
         #region Login
@@ -137,6 +129,7 @@ namespace ServiceToolWPF
         {
             if (txbUserName.Text != "" && txbPassword.Password != "")
             {
+                WriteLog($"Login: {txbUserName.Text}");
                 var salt = LoginService.GetSalt(ServiceToolWPF.MainWindow.sharedClient, txbUserName.Text);
                 if (salt != "" && salt != "Error")
                 {
@@ -154,11 +147,31 @@ namespace ServiceToolWPF
                         //MessageBox.Show(ex.Message);
                     }
                 }
-                if (!MainWindow.loggedIn)
+                if (MainWindow.loggedIn)
                 {
-                        MessageBox.Show("Incorrect username or password!");
+                    txbUserName.Focusable = false;
+                    txbPassword.Focusable = false;
+                    btnLogin.Content = "Logout";
+                }
+                else
+                {
+                    WriteLog("Incorrect username or password!");
                 }
             }
+        }
+        #endregion
+        #region Logout
+        public void UserLogout() 
+        {
+            txbUserName.Focusable = true;
+            txbPassword.Focusable = true;
+            btnLogin.Content = "Login";
+        }
+        #endregion 
+        #region Log
+        public void WriteLog(string line) 
+        { 
+            lbxLog.Items.Add($"{DateTime.Now.ToString()}> {line}");        
         }
         #endregion
 

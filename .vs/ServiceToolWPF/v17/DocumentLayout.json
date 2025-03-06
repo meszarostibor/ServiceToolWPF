@@ -1,30 +1,30 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\SULI\\Projektmunka\\RejtelyekHazaServiceTool\\ServiceToolWPF\\",
+  "WorkspaceRootPath": "D:\\Suli\\2Ev\\IKTProjektmunka\\ServiceToolWPF\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{BBAA0100-93FE-4F46-AA65-7101D133FA1A}|ServiceToolWPF\\ServiceToolWPF.csproj|d:\\suli\\projektmunka\\rejtelyekhazaservicetool\\servicetoolwpf\\servicetoolwpf\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{BBAA0100-93FE-4F46-AA65-7101D133FA1A}|ServiceToolWPF\\ServiceToolWPF.csproj|d:\\suli\\2ev\\iktprojektmunka\\servicetoolwpf\\servicetoolwpf\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BBAA0100-93FE-4F46-AA65-7101D133FA1A}|ServiceToolWPF\\ServiceToolWPF.csproj|solutionrelative:servicetoolwpf\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BBAA0100-93FE-4F46-AA65-7101D133FA1A}|ServiceToolWPF\\ServiceToolWPF.csproj|d:\\suli\\projektmunka\\rejtelyekhazaservicetool\\servicetoolwpf\\servicetoolwpf\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "AbsoluteMoniker": "D:0:0:{BBAA0100-93FE-4F46-AA65-7101D133FA1A}|ServiceToolWPF\\ServiceToolWPF.csproj|d:\\suli\\2ev\\iktprojektmunka\\servicetoolwpf\\servicetoolwpf\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{BBAA0100-93FE-4F46-AA65-7101D133FA1A}|ServiceToolWPF\\ServiceToolWPF.csproj|solutionrelative:servicetoolwpf\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BBAA0100-93FE-4F46-AA65-7101D133FA1A}|ServiceToolWPF\\ServiceToolWPF.csproj|d:\\suli\\projektmunka\\rejtelyekhazaservicetool\\servicetoolwpf\\servicetoolwpf\\services\\loginservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BBAA0100-93FE-4F46-AA65-7101D133FA1A}|ServiceToolWPF\\ServiceToolWPF.csproj|solutionrelative:servicetoolwpf\\services\\loginservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{BBAA0100-93FE-4F46-AA65-7101D133FA1A}|ServiceToolWPF\\ServiceToolWPF.csproj|d:\\suli\\2ev\\iktprojektmunka\\servicetoolwpf\\servicetoolwpf\\classes\\loggedinuserdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BBAA0100-93FE-4F46-AA65-7101D133FA1A}|ServiceToolWPF\\ServiceToolWPF.csproj|solutionrelative:servicetoolwpf\\classes\\loggedinuserdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BBAA0100-93FE-4F46-AA65-7101D133FA1A}|ServiceToolWPF\\ServiceToolWPF.csproj|d:\\suli\\projektmunka\\rejtelyekhazaservicetool\\servicetoolwpf\\servicetoolwpf\\classes\\userdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{BBAA0100-93FE-4F46-AA65-7101D133FA1A}|ServiceToolWPF\\ServiceToolWPF.csproj|d:\\suli\\2ev\\iktprojektmunka\\servicetoolwpf\\servicetoolwpf\\classes\\userdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BBAA0100-93FE-4F46-AA65-7101D133FA1A}|ServiceToolWPF\\ServiceToolWPF.csproj|solutionrelative:servicetoolwpf\\classes\\userdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BBAA0100-93FE-4F46-AA65-7101D133FA1A}|ServiceToolWPF\\ServiceToolWPF.csproj|d:\\suli\\projektmunka\\rejtelyekhazaservicetool\\servicetoolwpf\\servicetoolwpf\\classes\\logindto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{BBAA0100-93FE-4F46-AA65-7101D133FA1A}|ServiceToolWPF\\ServiceToolWPF.csproj|d:\\suli\\2ev\\iktprojektmunka\\servicetoolwpf\\servicetoolwpf\\classes\\logindto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BBAA0100-93FE-4F46-AA65-7101D133FA1A}|ServiceToolWPF\\ServiceToolWPF.csproj|solutionrelative:servicetoolwpf\\classes\\logindto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BBAA0100-93FE-4F46-AA65-7101D133FA1A}|ServiceToolWPF\\ServiceToolWPF.csproj|d:\\suli\\projektmunka\\rejtelyekhazaservicetool\\servicetoolwpf\\servicetoolwpf\\classes\\loggedinuserdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BBAA0100-93FE-4F46-AA65-7101D133FA1A}|ServiceToolWPF\\ServiceToolWPF.csproj|solutionrelative:servicetoolwpf\\classes\\loggedinuserdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{BBAA0100-93FE-4F46-AA65-7101D133FA1A}|ServiceToolWPF\\ServiceToolWPF.csproj|d:\\suli\\2ev\\iktprojektmunka\\servicetoolwpf\\servicetoolwpf\\services\\loginservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BBAA0100-93FE-4F46-AA65-7101D133FA1A}|ServiceToolWPF\\ServiceToolWPF.csproj|solutionrelative:servicetoolwpf\\services\\loginservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -42,11 +42,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "LoginService.cs",
-              "DocumentMoniker": "D:\\SULI\\Projektmunka\\RejtelyekHazaServiceTool\\ServiceToolWPF\\ServiceToolWPF\\Services\\LoginService.cs",
+              "DocumentMoniker": "D:\\Suli\\2Ev\\IKTProjektmunka\\ServiceToolWPF\\ServiceToolWPF\\Services\\LoginService.cs",
               "RelativeDocumentMoniker": "ServiceToolWPF\\Services\\LoginService.cs",
-              "ToolTip": "D:\\SULI\\Projektmunka\\RejtelyekHazaServiceTool\\ServiceToolWPF\\ServiceToolWPF\\Services\\LoginService.cs",
+              "ToolTip": "D:\\Suli\\2Ev\\IKTProjektmunka\\ServiceToolWPF\\ServiceToolWPF\\Services\\LoginService.cs",
               "RelativeToolTip": "ServiceToolWPF\\Services\\LoginService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -57,9 +57,9 @@
               "$type": "Document",
               "DocumentIndex": 3,
               "Title": "UserDTO.cs",
-              "DocumentMoniker": "D:\\SULI\\Projektmunka\\RejtelyekHazaServiceTool\\ServiceToolWPF\\ServiceToolWPF\\Classes\\UserDTO.cs",
+              "DocumentMoniker": "D:\\Suli\\2Ev\\IKTProjektmunka\\ServiceToolWPF\\ServiceToolWPF\\Classes\\UserDTO.cs",
               "RelativeDocumentMoniker": "ServiceToolWPF\\Classes\\UserDTO.cs",
-              "ToolTip": "D:\\SULI\\Projektmunka\\RejtelyekHazaServiceTool\\ServiceToolWPF\\ServiceToolWPF\\Classes\\UserDTO.cs",
+              "ToolTip": "D:\\Suli\\2Ev\\IKTProjektmunka\\ServiceToolWPF\\ServiceToolWPF\\Classes\\UserDTO.cs",
               "RelativeToolTip": "ServiceToolWPF\\Classes\\UserDTO.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -70,9 +70,9 @@
               "$type": "Document",
               "DocumentIndex": 4,
               "Title": "LoginDTO.cs",
-              "DocumentMoniker": "D:\\SULI\\Projektmunka\\RejtelyekHazaServiceTool\\ServiceToolWPF\\ServiceToolWPF\\Classes\\LoginDTO.cs",
+              "DocumentMoniker": "D:\\Suli\\2Ev\\IKTProjektmunka\\ServiceToolWPF\\ServiceToolWPF\\Classes\\LoginDTO.cs",
               "RelativeDocumentMoniker": "ServiceToolWPF\\Classes\\LoginDTO.cs",
-              "ToolTip": "D:\\SULI\\Projektmunka\\RejtelyekHazaServiceTool\\ServiceToolWPF\\ServiceToolWPF\\Classes\\LoginDTO.cs",
+              "ToolTip": "D:\\Suli\\2Ev\\IKTProjektmunka\\ServiceToolWPF\\ServiceToolWPF\\Classes\\LoginDTO.cs",
               "RelativeToolTip": "ServiceToolWPF\\Classes\\LoginDTO.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -81,11 +81,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 2,
               "Title": "LoggedInUserDTO.cs",
-              "DocumentMoniker": "D:\\SULI\\Projektmunka\\RejtelyekHazaServiceTool\\ServiceToolWPF\\ServiceToolWPF\\Classes\\LoggedInUserDTO.cs",
+              "DocumentMoniker": "D:\\Suli\\2Ev\\IKTProjektmunka\\ServiceToolWPF\\ServiceToolWPF\\Classes\\LoggedInUserDTO.cs",
               "RelativeDocumentMoniker": "ServiceToolWPF\\Classes\\LoggedInUserDTO.cs",
-              "ToolTip": "D:\\SULI\\Projektmunka\\RejtelyekHazaServiceTool\\ServiceToolWPF\\ServiceToolWPF\\Classes\\LoggedInUserDTO.cs",
+              "ToolTip": "D:\\Suli\\2Ev\\IKTProjektmunka\\ServiceToolWPF\\ServiceToolWPF\\Classes\\LoggedInUserDTO.cs",
               "RelativeToolTip": "ServiceToolWPF\\Classes\\LoggedInUserDTO.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAyAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -96,9 +96,9 @@
               "$type": "Document",
               "DocumentIndex": 1,
               "Title": "MainWindow.xaml",
-              "DocumentMoniker": "D:\\SULI\\Projektmunka\\RejtelyekHazaServiceTool\\ServiceToolWPF\\ServiceToolWPF\\MainWindow.xaml",
+              "DocumentMoniker": "D:\\Suli\\2Ev\\IKTProjektmunka\\ServiceToolWPF\\ServiceToolWPF\\MainWindow.xaml",
               "RelativeDocumentMoniker": "ServiceToolWPF\\MainWindow.xaml",
-              "ToolTip": "D:\\SULI\\Projektmunka\\RejtelyekHazaServiceTool\\ServiceToolWPF\\ServiceToolWPF\\MainWindow.xaml",
+              "ToolTip": "D:\\Suli\\2Ev\\IKTProjektmunka\\ServiceToolWPF\\ServiceToolWPF\\MainWindow.xaml",
               "RelativeToolTip": "ServiceToolWPF\\MainWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2025-03-04T15:45:11.014Z",
@@ -108,11 +108,11 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "MainWindow.xaml.cs",
-              "DocumentMoniker": "D:\\SULI\\Projektmunka\\RejtelyekHazaServiceTool\\ServiceToolWPF\\ServiceToolWPF\\MainWindow.xaml.cs",
+              "DocumentMoniker": "D:\\Suli\\2Ev\\IKTProjektmunka\\ServiceToolWPF\\ServiceToolWPF\\MainWindow.xaml.cs",
               "RelativeDocumentMoniker": "ServiceToolWPF\\MainWindow.xaml.cs",
-              "ToolTip": "D:\\SULI\\Projektmunka\\RejtelyekHazaServiceTool\\ServiceToolWPF\\ServiceToolWPF\\MainWindow.xaml.cs",
+              "ToolTip": "D:\\Suli\\2Ev\\IKTProjektmunka\\ServiceToolWPF\\ServiceToolWPF\\MainWindow.xaml.cs",
               "RelativeToolTip": "ServiceToolWPF\\MainWindow.xaml.cs",
-              "ViewState": "AgIAAEkAAAAAAAAAAAAwwKIAAAASAAAAAAAAAA==",
+              "ViewState": "AgIAAIoAAAAAAAAAAAAQwJEAAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-04T15:45:09.92Z",
               "EditorCaption": ""

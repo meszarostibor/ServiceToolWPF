@@ -22,12 +22,12 @@
         <GroupBox Header="Login" Width="160" Margin="0,2,2,128" HorizontalAlignment="Right">
             <Grid>
 
-                <TextBox x:Name="txbUserNameBackgrnd" HorizontalAlignment="Center" Margin="0,5,0,0" TextWrapping="Wrap" Text="Username" VerticalAlignment="Top" Width="146" Grid.Column="1" Height="18" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
-                <TextBox x:Name="txbPasswordBackgrnd" HorizontalAlignment="Center" Margin="0,25,0,0" TextWrapping="Wrap" Text="Password" VerticalAlignment="Top" Width="146" Grid.Column="1" Height="18" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                <TextBox x:Name="txbUserNameBackgrnd" HorizontalAlignment="Center" Margin="0,5,0,0" TextWrapping="Wrap" Text="Username" VerticalAlignment="Top" Width="146" Grid.Column="1" Height="18" Foreground="#FF7E7C7C"/>
+                <TextBox x:Name="txbPasswordBackgrnd" HorizontalAlignment="Center" Margin="0,25,0,0" TextWrapping="Wrap" Text="Password" VerticalAlignment="Top" Width="146" Grid.Column="1" Height="18" Foreground="#FF7E7C7C"/>
                 <TextBox x:Name="txbUserName" HorizontalAlignment="Center" Margin="0,5,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="146" Height="18" UseLayoutRounding="False" GotFocus="txbUserName_GotFocus" Foreground="#FF5B5CAB" FontWeight="Bold" Background="{Binding ElementName=txbPassword, Mode=OneWay}" TextChanged="txbUserName_TextChanged" KeyDown="txbUserName_KeyDown" />
                 <PasswordBox x:Name="txbPassword" HorizontalAlignment="Center" Margin="0,25,0,0" VerticalAlignment="Top" Width="146" Password="" Grid.Column="1" Height="18" GotFocus="txbPassword_GotFocus" Foreground="#FF5B5CAB" FontWeight="Bold" PasswordChanged="txbPassword_PasswordChanged" Background="{Binding ElementName=txbUserNameBackgrnd, Mode=OneWay}" KeyDown="txbPassword_KeyDown"/>
                 <Button x:Name="btnLogin" Content="Login" HorizontalAlignment="Center" Margin="0,45,0,0" VerticalAlignment="Top" Width="146" Grid.Column="1" Height="20" Click="btnLogin_Click"/>
-                <Button x:Name="btnLogOut" Content="Logout" HorizontalAlignment="Center" Margin="0,67,0,0" VerticalAlignment="Top" Width="146" Grid.Column="1" Height="20" Click="btnLogOut_Click"/>
+              
                 <Button x:Name="btnSaveLog" Content="Save log" HorizontalAlignment="Center" Width="146" Height="20" VerticalAlignment="Bottom" Margin="0,0,0,22"/>
                 <Button x:Name="btnClearLog" Content="Clear log" HorizontalAlignment="Center" Margin="0,111,0,0" VerticalAlignment="Bottom" Width="146" Grid.Column="1" Height="20"/>
             </Grid>
