@@ -47,13 +47,8 @@ namespace ServiceToolWPF.Services
             {
                 throw new Exception($"HTTP hiba: {response.StatusCode}");
             }
-            return response.Content.ReadAsStringAsync().Result;
+            return response.ToString() ;
         }
         
-
-
-
-
-
     }
 }

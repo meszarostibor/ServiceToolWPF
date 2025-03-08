@@ -15,7 +15,7 @@ using System.Security.Cryptography;
 using System.Net.Http;
 using Microsoft.Win32;
 using System.IO;
-using static System.Net.Mime.MediaTypeNames;
+using System.Drawing;
 
 namespace ServiceToolWPF
 {
@@ -26,6 +26,7 @@ namespace ServiceToolWPF
     {
         #region Declarations
         public static bool loggedIn = false;
+
         public static HttpClient? sharedClient = new()
         {
             BaseAddress = new Uri("http://localhost:5174/"),
@@ -109,22 +110,22 @@ namespace ServiceToolWPF
         #region Login trigger events
         private void txbUserName_KeyDown(object sender, KeyEventArgs e)
         {
-                        if (e.Key == Key.Enter) { UserLogin(); }
+            if (e.Key == Key.Enter) { UserLogin(); }
         }
         private void txbPassword_KeyDown(object sender, KeyEventArgs e)
         {
-                        if (e.Key == Key.Enter) { UserLogin(); }
+            if (e.Key == Key.Enter) { UserLogin(); }
         }
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
-            if(btnLogin.Content.ToString() =="Login")
+            if (btnLogin.Content.ToString() == "Login")
             {
                 UserLogin();
             }
             else
             {
                 UserLogout();
-            }            
+            }
         }
         #endregion
         #region Login
@@ -133,6 +134,7 @@ namespace ServiceToolWPF
             if (txbUserName.Text != "" && txbPassword.Password != "")
             {
                 WriteLog($"Login: {txbUserName.Text}");
+                lbxLog.Items.Refresh();
                 var salt = LoginService.GetSalt(ServiceToolWPF.MainWindow.sharedClient, txbUserName.Text);
                 if (salt != "" && salt != "Error")
                 {
@@ -143,6 +145,8 @@ namespace ServiceToolWPF
                         if (MainWindow.loggedInUser?.Token != "")
                         {
                             MainWindow.loggedIn = true;
+                            WriteLog("Succesfull login!");
+                            WriteLog($"Logged in user: {txbUserName.Text} token: {MainWindow.loggedInUser.Token.ToString()}");
                         }
                     }
                     catch (Exception ex)
@@ -164,7 +168,7 @@ namespace ServiceToolWPF
         }
         #endregion
         #region Logout
-        public void UserLogout() 
+        public void UserLogout()
         {
             txbUserName.Focusable = true;
             txbPassword.Focusable = true;
@@ -172,9 +176,9 @@ namespace ServiceToolWPF
         }
         #endregion 
         #region LogWindow
-        public void WriteLog(string line) 
-        { 
-            lbxLog.Items.Add($"{DateTime.Now.ToString()}> {line}");        
+        public void WriteLog(string line)
+        {
+            lbxLog.Items.Add($"{DateTime.Now.ToString()}> {line}");
         }
         private void btnClearLog_Click(object sender, RoutedEventArgs e)
         {
@@ -198,7 +202,7 @@ namespace ServiceToolWPF
                     sw.Close();
                 }
             }
-            catch 
+            catch
             {
                 WriteLog("Save log error!");
             }
@@ -213,7 +217,7 @@ namespace ServiceToolWPF
         {
             RegUsernameTextCheck();
         }
-        private void RegUsernameTextCheck() 
+        private void RegUsernameTextCheck()
         {
             if (txbRegUserName.Text == "")
             {
@@ -227,12 +231,14 @@ namespace ServiceToolWPF
         private void txbRegPassword1_GotFocus(object sender, RoutedEventArgs e)
         {
             RegPassword1TextCheck();
+            RegPassword2TextCheck();
         }
         private void txbRegPassword1_PasswordChanged(object sender, RoutedEventArgs e)
         {
             RegPassword1TextCheck();
+            RegPassword2TextCheck();
         }
-        private void RegPassword1TextCheck() 
+        private void RegPassword1TextCheck()
         {
             if (txbRegPassword1.Password == "")
             {
@@ -259,7 +265,14 @@ namespace ServiceToolWPF
             }
             else
             {
-                txbRegPassword2.Background = txbUserNameBackgrnd.Background;
+                if (txbRegPassword1.Password == txbRegPassword2.Password)
+                {
+                    txbRegPassword2.Background = txbUserNameBackgrnd.Background;
+                }
+                else
+                {
+                    txbRegPassword2.Background = Brushes.LightPink;
+                }
             }
         }
 
@@ -294,7 +307,7 @@ namespace ServiceToolWPF
             RegEmailTextCheck();
         }
 
-        private void RegEmailTextCheck() 
+        private void RegEmailTextCheck()
         {
             if (txbRegEmail.Text == "")
             {
@@ -305,6 +318,72 @@ namespace ServiceToolWPF
                 txbRegEmail.Background = txbUserNameBackgrnd.Background;
             }
         }
+        private void txbRegPhone_GotFocus(object sender, RoutedEventArgs e)
+        {
+            RegEmailPhoneCheck();
+        }
+
+        private void txbRegPhone_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            RegEmailPhoneCheck();
+        }
+
+        private void RegEmailPhoneCheck()
+        {
+            if (txbRegPhone.Text == "")
+            {
+                txbRegPhone.Background = null;
+            }
+            else
+            {
+                txbRegPhone.Background = txbUserNameBackgrnd.Background;
+            }
+        }
+
         #endregion
+        #region Registration trigger events
+        private void txbRegUserName_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter) { Registration(); }
+        }
+        private void txbRegPassword1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter) { Registration(); }
+        }
+        private void txbRegPassword2_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter) { Registration(); }
+        }
+        private void txbRegName_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter) { Registration(); }
+        }
+        private void txbRegEmail_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter) { Registration(); }
+        }
+        private void txbRegPhone_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter) { Registration(); }
+        }
+        private void btnRegistration_Click(object sender, RoutedEventArgs e)
+        {
+            Registration();
+        }
+        #endregion
+        #region Registration
+        private void Registration() 
+        {
+            if (txbRegUserName.Text != "" && txbRegPassword1.Password != "" && txbRegPassword1.Password == txbRegPassword2.Password && txbRegName.Text != "" && txbRegEmail.Text != "" && txbRegPhone.Text != "")
+            {
+
+
+
+
+            }
+        }
+        #endregion
+
+
     }
 }
