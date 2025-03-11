@@ -22,13 +22,16 @@ namespace ServiceToolWPF
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
+
     public partial class MainWindow : Window
     {
         #region Declarations
+
+        public static string errorMessage;
         public static bool loggedIn = false;
         public static HttpClient? sharedClient = new()
         {
-            BaseAddress = new Uri("http://localhost:5174/"),
+            BaseAddress = new Uri("http://localhost:5131/"),
         };
         public static LoggedInUserDTO? loggedInUser;
         #endregion
@@ -43,11 +46,11 @@ namespace ServiceToolWPF
         public static string GenerateSalt()
         {
             Random random = new Random();
-            string karakterek = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
             string salt = "";
             for (int i = 0; i < SaltLength; i++)
             {
-                salt += karakterek[random.Next(karakterek.Length)];
+                salt += chars[random.Next(chars.Length)];
             }
             return salt;
         }
@@ -109,22 +112,22 @@ namespace ServiceToolWPF
         #region Login trigger events
         private void txbUserName_KeyDown(object sender, KeyEventArgs e)
         {
-                        if (e.Key == Key.Enter) { UserLogin(); }
+            if (e.Key == Key.Enter) { UserLogin(); }
         }
         private void txbPassword_KeyDown(object sender, KeyEventArgs e)
         {
-                        if (e.Key == Key.Enter) { UserLogin(); }
+            if (e.Key == Key.Enter) { UserLogin(); }
         }
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
-            if(btnLogin.Content.ToString() =="Login")
+            if (btnLogin.Content.ToString() == "Login")
             {
                 UserLogin();
             }
             else
             {
                 UserLogout();
-            }            
+            }
         }
         #endregion
         #region Login
@@ -139,42 +142,83 @@ namespace ServiceToolWPF
                     string tmpHash = MainWindow.CreateSHA256(txbPassword.Password + salt);
                     try
                     {
-                        MainWindow.loggedInUser = JsonSerializer.Deserialize<LoggedInUserDTO>(LoginService.Login(ServiceToolWPF.MainWindow.sharedClient, txbUserName.Text, tmpHash));
-                        if (MainWindow.loggedInUser?.Token != "")
+                        string l = LoginService.Login(ServiceToolWPF.MainWindow.sharedClient, txbUserName.Text, tmpHash);
+                        if (errorMessage == "")
                         {
-                            MainWindow.loggedIn = true;
+                            var options = new JsonSerializerOptions
+                            {
+                                PropertyNameCaseInsensitive = true,
+                            };
+
+                            loggedInUser = JsonSerializer.Deserialize<LoggedInUserDTO>(l, options);
+                            if (loggedInUser?.Token != "")
+                            {
+                                MainWindow.loggedIn = true;
+                                txbUserName.Focusable = false;
+                                txbUserName.Background = Brushes.LightGreen;
+                                txbPassword.Focusable = false;
+                                txbPassword.Background = Brushes.LightGreen;
+                                btnLogin.Content = "Logout";
+                                WriteLog("Login successful!");
+                                WriteLog(l);
+                                token.Text = loggedInUser.Token;
+
+                            }
+                        }
+                        else
+                        {
+                            WriteLog($"{errorMessage}");
                         }
                     }
                     catch (Exception ex)
                     {
-                        //MessageBox.Show(ex.Message);
+                        WriteLog("Login failed: " + ex.Message);
                     }
                 }
-                if (MainWindow.loggedIn)
+                else 
                 {
-                    txbUserName.Focusable = false;
-                    txbPassword.Focusable = false;
-                    btnLogin.Content = "Logout";
+                    WriteLog("Login failed: Incorrect username or password!" );
                 }
-                else
-                {
-                    WriteLog("Incorrect username or password!");
-                }
+
+                //if (MainWindow.loggedIn)
+                //{
+                //    txbUserName.Focusable = false;
+                //    txbUserName.Background = Brushes.LightGreen;
+                //    txbPassword.Focusable = false;
+                //    txbPassword.Background = Brushes.LightGreen;
+                //    btnLogin.Content = "Logout";
+                //}
+                //else
+                //{
+                //    WriteLog(errorMessage);
+                //}
             }
         }
         #endregion
         #region Logout
-        public void UserLogout() 
+        public void UserLogout()
         {
+            string response = LogoutService.Logout(ServiceToolWPF.MainWindow.sharedClient, MainWindow.loggedInUser.NickName);
+            if (errorMessage == "")
+            {
+                WriteLog("Logout succesful!");
+            }
+            else 
+            {
+                WriteLog("Logout failed!");
+            }
             txbUserName.Focusable = true;
+            txbUserName.Background = Brushes.White;
             txbPassword.Focusable = true;
+            txbPassword.Background = Brushes.White;
             btnLogin.Content = "Login";
         }
-        #endregion 
+        #endregion
         #region LogWindow
-        public void WriteLog(string line) 
-        { 
-            lbxLog.Items.Add($"{DateTime.Now.ToString()}> {line}");        
+        public void WriteLog(string line)
+        {
+            lbxLog.Items.Add($"{DateTime.Now.ToString()}> {line}");
+            lbxLog.ScrollIntoView(lbxLog.Items[lbxLog.Items.Count - 1]);
         }
         private void btnClearLog_Click(object sender, RoutedEventArgs e)
         {
@@ -198,7 +242,7 @@ namespace ServiceToolWPF
                     sw.Close();
                 }
             }
-            catch 
+            catch
             {
                 WriteLog("Save log error!");
             }
@@ -213,7 +257,7 @@ namespace ServiceToolWPF
         {
             RegUsernameTextCheck();
         }
-        private void RegUsernameTextCheck() 
+        private void RegUsernameTextCheck()
         {
             if (txbRegUserName.Text == "")
             {
@@ -227,12 +271,14 @@ namespace ServiceToolWPF
         private void txbRegPassword1_GotFocus(object sender, RoutedEventArgs e)
         {
             RegPassword1TextCheck();
+            RegPassword2TextCheck();
         }
         private void txbRegPassword1_PasswordChanged(object sender, RoutedEventArgs e)
         {
             RegPassword1TextCheck();
+            RegPassword2TextCheck();
         }
-        private void RegPassword1TextCheck() 
+        private void RegPassword1TextCheck()
         {
             if (txbRegPassword1.Password == "")
             {
@@ -259,7 +305,14 @@ namespace ServiceToolWPF
             }
             else
             {
-                txbRegPassword2.Background = txbUserNameBackgrnd.Background;
+                if (txbRegPassword1.Password == txbRegPassword2.Password)
+                {
+                    txbRegPassword2.Background = txbUserNameBackgrnd.Background;
+                }
+                else
+                {
+                    txbRegPassword2.Background = Brushes.LightPink;
+                }
             }
         }
 
@@ -294,7 +347,7 @@ namespace ServiceToolWPF
             RegEmailTextCheck();
         }
 
-        private void RegEmailTextCheck() 
+        private void RegEmailTextCheck()
         {
             if (txbRegEmail.Text == "")
             {
@@ -305,6 +358,73 @@ namespace ServiceToolWPF
                 txbRegEmail.Background = txbUserNameBackgrnd.Background;
             }
         }
+        private void txbRegPhone_GotFocus(object sender, RoutedEventArgs e)
+        {
+            RegEmailPhoneCheck();
+        }
+
+        private void txbRegPhone_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            RegEmailPhoneCheck();
+        }
+
+        private void RegEmailPhoneCheck()
+        {
+            if (txbRegPhone.Text == "")
+            {
+                txbRegPhone.Background = null;
+            }
+            else
+            {
+                txbRegPhone.Background = txbUserNameBackgrnd.Background;
+            }
+        }
+
         #endregion
+        #region Registration trigger events
+        private void txbRegUserName_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter) { Registration(); }
+        }
+        private void txbRegPassword1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter) { Registration(); }
+        }
+        private void txbRegPassword2_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter) { Registration(); }
+        }
+        private void txbRegName_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter) { Registration(); }
+        }
+        private void txbRegEmail_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter) { Registration(); }
+        }
+        private void txbRegPhone_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter) { Registration(); }
+        }
+        private void btnRegistration_Click(object sender, RoutedEventArgs e)
+        {
+            Registration();
+        }
+        #endregion
+        #region Registration
+        private void Registration()
+        {
+            if (txbRegUserName.Text != "" && txbRegPassword1.Password != "" && txbRegPassword1.Password == txbRegPassword2.Password && txbRegName.Text != "" && txbRegEmail.Text != "" && txbRegPhone.Text != "")
+            {
+
+
+
+
+            }
+        }
+
+
+        #endregion
+
     }
 }
