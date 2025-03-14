@@ -15,21 +15,24 @@ using System.Security.Cryptography;
 using System.Net.Http;
 using Microsoft.Win32;
 using System.IO;
-using System.Drawing;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace ServiceToolWPF
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
+
     public partial class MainWindow : Window
     {
         #region Declarations
+        string SALT;
+        string HASH;
+        public static string message;
         public static bool loggedIn = false;
-
         public static HttpClient? sharedClient = new()
         {
-            BaseAddress = new Uri("http://localhost:5174/"),
+            BaseAddress = new Uri("http://localhost:5131/"),
         };
         public static LoggedInUserDTO? loggedInUser;
         #endregion
@@ -44,11 +47,11 @@ namespace ServiceToolWPF
         public static string GenerateSalt()
         {
             Random random = new Random();
-            string karakterek = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
             string salt = "";
             for (int i = 0; i < SaltLength; i++)
             {
-                salt += karakterek[random.Next(karakterek.Length)];
+                salt += chars[random.Next(chars.Length)];
             }
             return salt;
         }
@@ -134,51 +137,90 @@ namespace ServiceToolWPF
             if (txbUserName.Text != "" && txbPassword.Password != "")
             {
                 WriteLog($"Login: {txbUserName.Text}");
-                lbxLog.Items.Refresh();
                 var salt = LoginService.GetSalt(ServiceToolWPF.MainWindow.sharedClient, txbUserName.Text);
                 if (salt != "" && salt != "Error")
                 {
                     string tmpHash = MainWindow.CreateSHA256(txbPassword.Password + salt);
                     try
                     {
-                        MainWindow.loggedInUser = JsonSerializer.Deserialize<LoggedInUserDTO>(LoginService.Login(ServiceToolWPF.MainWindow.sharedClient, txbUserName.Text, tmpHash));
-                        if (MainWindow.loggedInUser?.Token != "")
+                        string l = LoginService.Login(ServiceToolWPF.MainWindow.sharedClient, txbUserName.Text, tmpHash);
+                        if (message == "")
                         {
-                            MainWindow.loggedIn = true;
-                            WriteLog("Succesfull login!");
-                            WriteLog($"Logged in user: {txbUserName.Text} token: {MainWindow.loggedInUser.Token.ToString()}");
+                            var options = new JsonSerializerOptions
+                            {
+                                PropertyNameCaseInsensitive = true,
+                            };
+
+                            loggedInUser = JsonSerializer.Deserialize<LoggedInUserDTO>(l, options);
+                            if (loggedInUser?.Token != "")
+                            {
+                                MainWindow.loggedIn = true;
+                                txbUserName.Focusable = false;
+                                txbUserName.Background = Brushes.LightGreen;
+                                txbPassword.Focusable = false;
+                                txbPassword.Background = Brushes.LightGreen;
+                                btnLogin.Content = "Logout";
+                                WriteLog("Login successful!");
+                                WriteLog(l);
+                                token.Text = loggedInUser.Token;
+
+                            }
+                        }
+                        else
+                        {
+                            WriteLog($"{message}");
                         }
                     }
                     catch (Exception ex)
                     {
-                        //MessageBox.Show(ex.Message);
+                        WriteLog("Login failed: " + ex.Message);
                     }
                 }
-                if (MainWindow.loggedIn)
+                else 
                 {
-                    txbUserName.Focusable = false;
-                    txbPassword.Focusable = false;
-                    btnLogin.Content = "Logout";
+                    WriteLog("Login failed: Incorrect username or password!" );
                 }
-                else
-                {
-                    WriteLog("Incorrect username or password!");
-                }
+
+                //if (MainWindow.loggedIn)
+                //{
+                //    txbUserName.Focusable = false;
+                //    txbUserName.Background = Brushes.LightGreen;
+                //    txbPassword.Focusable = false;
+                //    txbPassword.Background = Brushes.LightGreen;
+                //    btnLogin.Content = "Logout";
+                //}
+                //else
+                //{
+                //    WriteLog(errorMessage);
+                //}
+
             }
         }
         #endregion
         #region Logout
         public void UserLogout()
         {
+            string response = LogoutService.Logout(ServiceToolWPF.MainWindow.sharedClient, MainWindow.loggedInUser.NickName);
+            if (message == "")
+            {
+                WriteLog("Logout succesful!");
+            }
+            else 
+            {
+                WriteLog("Logout failed!");
+            }
             txbUserName.Focusable = true;
+            txbUserName.Background = Brushes.White;
             txbPassword.Focusable = true;
+            txbPassword.Background = Brushes.White;
             btnLogin.Content = "Login";
         }
-        #endregion 
+        #endregion
         #region LogWindow
         public void WriteLog(string line)
         {
             lbxLog.Items.Add($"{DateTime.Now.ToString()}> {line}");
+            lbxLog.ScrollIntoView(lbxLog.Items[lbxLog.Items.Count - 1]);
         }
         private void btnClearLog_Click(object sender, RoutedEventArgs e)
         {
@@ -372,18 +414,25 @@ namespace ServiceToolWPF
         }
         #endregion
         #region Registration
-        private void Registration() 
+        private void Registration()
         {
             if (txbRegUserName.Text != "" && txbRegPassword1.Password != "" && txbRegPassword1.Password == txbRegPassword2.Password && txbRegName.Text != "" && txbRegEmail.Text != "" && txbRegPhone.Text != "")
             {
-
-
-
-
+                SALT = GenerateSalt();
+                UserDTO user = new UserDTO();
+                user.UserId = 0;
+                user.NickName = txbRegUserName.Text;    
+                user.RealName = txbRegName.Text;
+                user.Email = txbRegEmail.Text;  
+                user.Phone = txbRegPhone.Text;
+                user.RoleId = null;
+                user.TeamId = null;
+                user.Salt = SALT;
+                user.Hash = CreateSHA256(CreateSHA256(txbRegPassword1.Password + SALT));
+                UserService.Post(sharedClient, user);
+                WriteLog(message);
             }
         }
         #endregion
-
-
     }
 }
