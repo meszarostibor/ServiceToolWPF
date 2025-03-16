@@ -29,6 +29,7 @@
                     <TextBox x:Name="txbRegName" HorizontalAlignment="Left" Margin="10,70,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="250" GotFocus="txbRegName_GotFocus"  TextChanged="txbRegName_TextChanged" Background="{Binding ElementName=grid, Mode=OneWay}" Foreground="#FF5B5CAB" FontWeight="Bold" KeyDown="txbRegName_KeyDown" Grid.ColumnSpan="3"/>
                     <TextBox x:Name="txbRegEmail" HorizontalAlignment="Left" Margin="10,90,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="250" GotFocus="txbRegEmail_GotFocus"  TextChanged="txbRegEmail_TextChanged" Background="{Binding ElementName=grid, Mode=OneWay}" Foreground="#FF5B5CAB" FontWeight="Bold" KeyDown="txbRegEmail_KeyDown" Grid.ColumnSpan="3"/>
                     <TextBox x:Name="txbRegPhone" HorizontalAlignment="Left" Margin="10,110,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="250"    Background="{Binding ElementName=grid, Mode=OneWay}" GotFocus="txbRegPhone_GotFocus" TextChanged="txbRegPhone_TextChanged" Foreground="#FF5B5CAB" FontWeight="Bold" SelectionTextBrush="White" KeyDown="txbRegPhone_KeyDown" Grid.ColumnSpan="3"/>
+                    <Button x:Name="btnConfirmRegistration"  Content="Confirm registration" HorizontalAlignment="Left" Margin="10,152,0,0" VerticalAlignment="Top" Width="250" Click="btnRegistration_Click" Grid.ColumnSpan="3"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Users">

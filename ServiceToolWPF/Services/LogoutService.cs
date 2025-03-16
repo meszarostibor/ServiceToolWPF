@@ -20,19 +20,19 @@ namespace ServiceToolWPF.Services
                 var response = httpClient.PostAsync(url, request).Result;
                 if (response.IsSuccessStatusCode)
                 {
-                    MainWindow.errorMessage = "";
+                    MainWindow.message = "";
                     MainWindow.loggedInUser = null;
                     MainWindow.loggedIn = false;
                 }
                 else
                 {
-                    MainWindow.errorMessage = $"{response.StatusCode} Logout failed!";
+                    MainWindow.message = $"{response.StatusCode} Logout failed!";
                 }
                 return response.Content.ReadAsStringAsync().Result;
             }
             catch (Exception ex) 
             {                 
-                MainWindow.errorMessage = $"{ex.Message} Logout failed!";
+                MainWindow.message = $"{ex.Message} Logout failed!";
                 return ex.Message;
             }
         }
